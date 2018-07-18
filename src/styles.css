@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+.card-deck
+{
+    width: 50%;
+    margin: auto;
+
+}
+
+
+
+img{
+    height: 20em;
+}
+
+.card{
+    min-height: 53vh;
+    margin-bottom: 10em;
+}
+
+
+
+h1{
+    text-align: center;
+}
+
+h5{
+    text-align: center;
+}
+
+.centered{
+    margin: auto;
+}
+
+h6{
+    text-align: center;
+}

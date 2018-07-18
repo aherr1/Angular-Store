@@ -1,0 +1,21 @@
+<div class = "column-sm-4">
+
+    <div class="card" style="width: 20em">
+    <img src="{{gem.fullImagePath}}" alt="{{gem.name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{gem.name}}</h5>
+        <app-tabs [gem] = "gem"></app-tabs>
+
+      </div>
+
+           <h6>{{gem.price | currency}}</h6>
+       
+    <button *ngIf="gem.inventory > 0" class="btn btn-default"
+    (click)="addToCart()">Add to Cart</button>
+    <button *ngIf="gem.inventory <= 0" class="btn btn-danger" disabled>Sold Out</button>    
+    
+    </div>
+        
+
+                                               
+</div>

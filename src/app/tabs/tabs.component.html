@@ -1,0 +1,18 @@
+<ul class="nav nav-pills">
+    <li class="nav-item"> <a class="nav-link" href="#" (click)="setTab(1)" 
+    [class.active]="tab === 1">Description</a> </li>
+<li class="nav-item"> <a class="nav-link" href="#" (click)="setTab(2)"
+    [class.active]="tab === 2">Colors</a> </li> 
+<li class="nav-item"> <a class="nav-link" href="#" (click)="setTab(3)"
+    [class.active]="tab === 3">Reviews</a> </li></ul>
+<div *ngIf="tab === 1">
+        {{gem.description}}
+</div>
+<div *ngIf="tab === 2">
+    <select class="form-control">
+        <option *ngFor = "let color of gem.colors">{{color}}</option>    
+    </select>
+</div>
+<div *ngIf="tab === 3">
+	<app-reviews [gem] = "gem"></app-reviews>
+</div>
