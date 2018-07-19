@@ -9,9 +9,7 @@
         {{gem.description}}
 </div>
 <div *ngIf="tab === 2">
-    <select class="form-control">
-        <option *ngFor = "let color of gem.colors">{{color}}</option>    
-    </select>
+    <ul><li *ngFor="let color of gem.colors">{{color}}</li></ul>
 </div>
 <div *ngIf="tab === 3">
 	<app-reviews [gem] = "gem"></app-reviews>

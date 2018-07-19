@@ -5,7 +5,18 @@
 
 }
 
+.red{
+    filter: hue-rotate(-45deg);
+}
 
+.green{
+    filter: hue-rotate(100deg);
+}
+
+.blue{
+    filter: hue-rotate(200deg);
+    
+}
 
 img{
     height: 20em;

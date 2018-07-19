@@ -1,7 +1,7 @@
 <div class = "column-sm-4">
 
     <div class="card" style="width: 20em">
-    <img src="{{gem.fullImagePath}}" alt="{{gem.name}}">
+        <img class="card-img-top" src="{{gem.fullImagePath}}" alt="{{gem.name}}" [class.red]="selectedColor === 'red'" [class.green]="selectedColor === 'green'" [class.blue]="selectedColor === 'blue'">
       <div class="card-body">
         <h5 class="card-title">{{gem.name}}</h5>
         <app-tabs [gem] = "gem"></app-tabs>
@@ -9,6 +9,9 @@
       </div>
 
            <h6>{{gem.price | currency}}</h6>
+        <select class="form-control" [(ngModel)]="selectedColor">
+            <option *ngFor="let color of gem.colors">{{color}}</option>
+        </select>
        
     <button *ngIf="gem.inventory > 0" class="btn btn-default"
     (click)="addToCart()">Add to Cart</button>
@@ -19,3 +22,6 @@
 
                                                
 </div>
+
+
+

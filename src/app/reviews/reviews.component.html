@@ -1,3 +1,85 @@
-<p>
-  reviews  for {{gem.name}} works!
-</p>
+<!--Existing Reviews-->
+<h6>Reviews</h6>
+<div *ngFor="let review of gem.reviews">
+    <div class="row">
+        <div class="col-2">
+            <img class="img-fluid" src="{{avatarService.getAvatar(review.author)}}" />
+        </div>
+        <div class="col-8">
+            <blockquote class="blockquote">
+                <p class="mb-0">{{review.body}}</p>
+                <footer class="blockquote-footer"><cite>{{review.author}}</cite></footer>
+            </blockquote>
+        </div>
+        <div class="col-2">
+            <h1>{{review.rating}}</h1> 
+        </div>
+    </div>
+</div>
+<!--New Review -->
+
+<div class="row">
+    <div class="col-2">
+        <img class="img-fluid" src="{{avatarService.getAvatar(review.author)}}" />
+    </div>
+    <div class="col-8">
+            <blockquote class="blockquote">
+                <p class="mb-0">{{newReview.body}}</p>
+                <footer class="blockquote-footer"><cite>{{newReview.author}}</cite></footer>
+            </blockquote>
+    </div>
+    <div class="col-2">
+            <h1>{{newReview.rating}}</h1> 
+    </div>
+</div>
+
+<form (ngSubmit)="submitClicked(); reviewForm.reset()" #reviewForm="ngForm">
+	<div *ngIf="reviewForm.invalid && email.touched && body.touched" class="alert alert-danger">
+		<ul>
+            <li *ngIf="email.errors && email.errors.required">
+                Email is required.
+            </li>
+			<li *ngIf="email.errors && email.errors.pattern">
+                Email is not formatted correctly.
+            </li>
+			<li *ngIf="body.errors && body.errors.required">
+                Body is required.
+            </li>
+			<li *ngIf="rating.errors && rating.errors.required">
+                Rating is required.
+            </li>
+        </ul>
+
+
+	</div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input  class="form-control" type="email" placeholder="Enter your email" name="email" [(ngModel)]="newReview.author" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel" [class.is-valid]="email.valid" [class.is-invalid]="email.invalid && email.touched" />
+		<div class="invalid-feedback">
+			Email is required and needs to look like an email address.
+		</div>
+		
+	</div>
+    <div class="form-group">
+        <label for="body">Review</label>
+        <textarea class="form-control" maxlength="10" placeholder="Enter your review" name="body" [(ngModel)]="newReview.body" required #body="ngModel" [class.is-valid]="body.valid" [class.is-invalid]="body.invalid && body.touched"></textarea>
+		<div class="invalid-feedback">
+			Review is required.
+		</div>
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating</label>
+        <select class="form-control" name="rating" [(ngModel)]="newReview.rating" required #rating="ngModel" [class.is-valid]="rating.valid" [class.is-invalid]="rating.invalid && rating.touched">
+			<option></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+		<div class="invalid-feedback">
+			Rating is required.
+		</div>
+    </div>
+    <input type="submit" class="btn btn-default" value="Submit Review" [disabled]="reviewForm.invalid" />
+</form>
