@@ -9,6 +9,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { CartComponent } from './cart/cart.component';
+
+//below your import statements but above your @ngModule:
+
+const appRoutes: Routes = [
+    {path: 'cart', component: CartComponent},
+    {path: 'home', component: HomeComponent},
+    {path: '**', component: NotFoundComponent}]
 
 
 @NgModule({
@@ -18,12 +27,18 @@ import { HttpClientModule } from '@angular/common/http';
     GemComponent,
     NavbarComponent,
     TabsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    NotFoundComponent,
+    CartComponent
   ],
-  imports: [
-    HttpClientModule,
+    imports: [
     BrowserModule,
-    FormsModule
+	  FormsModule,
+	  HttpClientModule,
+	  RouterModule.forRoot(
+		  appRoutes,
+      		{ enableTracing: true } // <-- debugging purposes only
+	  )
   ],
   providers: [],
   bootstrap: [AppComponent]

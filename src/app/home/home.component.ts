@@ -10,10 +10,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 homeGems : GemModel[];
     
-constructor(private httpClient: HttpClient) { }
-
-ngOnInit() {
-    this.httpClient.get<GemModel[]>('./assets/gems.json').subscribe((results) => { this.homeGems = results });
-    }
-
-}
+ 	constructor(private httpClient: HttpClient) { }
+ 	ngOnInit() {
+		this.httpClient.get<GemModel[]>('http://localhost:51500/gem').subscribe((results) => { this.homeGems = results });
+ 	}
+ 
+ }
